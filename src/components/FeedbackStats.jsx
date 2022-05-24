@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const FeedbackStats = ({feedback,average}) => { //these props are drilled from the parent components.
   return (
@@ -10,3 +11,8 @@ const FeedbackStats = ({feedback,average}) => { //these props are drilled from t
 }
 
 export default FeedbackStats
+
+FeedbackStats.propTypes = {
+  feedback: PropTypes.array.isRequired,
+  average: PropTypes.number.isRequired
+}

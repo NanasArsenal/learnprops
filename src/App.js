@@ -3,7 +3,8 @@ import Header from "./components/Header";
 import FeedbackData from "./data/FeedbackData"; //data from remote data file
 import FeedbackList from "./components/FeedbackList";
 import FeedbackStats from "./components/FeedbackStats"; //imported from feedback stats
-
+import FeedbackForm from "./components/FeedbackForm";
+import Report from "./components/Report";
 
 function App() {
   //state for feedback
@@ -20,18 +21,23 @@ function App() {
 
   let average = (feedback.reduce((pre,curr) => { //function for claculating the average
       return pre + curr.rating;
-  },0))/feedback.length
-  
+  },0))/feedback.length;
+  average =average.toFixed(1)
+
   console.log(average);
   return (
     <>
       <Header/>
       <div className="container"> 
-          <FeedbackStats feedback={feedback} average={average}/>
+          <FeedbackForm/>
+          <FeedbackStats feedback={feedback} average={isNaN(average) ? 0 : average}/>
          <FeedbackList feedback={feedback} HandleDelete={deleteFeedback}/>
+         <Report/>
       </div>
     </>
   );
 }
 
 export default App;
+
+
